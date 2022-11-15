@@ -8,7 +8,7 @@ auth = Blueprint('auth', __name__, template_folder= 'auth_templates')
 
 @auth.route('/signup', methods = ['GET', 'POST'])
 def signup():
-    form = UserLoginForm
+    form = UserLoginForm()
 
     try:
         if request.method == 'POST' and form.validate_on_submit():
@@ -25,7 +25,7 @@ def signup():
             return redirect(url_for('site.home'))
     except:
         raise Exception('Invaild form data.Check your form.')
-    return render_template('sign_up.html', form = form)
+    return render_template('sign_up.html', form=form)
 
 
 @auth.route('/signin', methods= ['GET', 'POST'])
